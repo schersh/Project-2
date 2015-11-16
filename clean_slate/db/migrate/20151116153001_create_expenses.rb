@@ -4,7 +4,7 @@ class CreateExpenses < ActiveRecord::Migration
       t.datetime :created_at
       t.integer :amount
       t.string :description
-      t.references :roommate, index: true, foreign_key: true 
+      t.references :user, index: true, foreign_key: true 
     end
   end
 end
