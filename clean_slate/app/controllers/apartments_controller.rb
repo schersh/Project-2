@@ -4,6 +4,7 @@ class ApartmentsController < ApplicationController
 
   def index
     authenticate_user!
+    @user = current_user
     if current_user
       @apartment = current_user.apartment
     else

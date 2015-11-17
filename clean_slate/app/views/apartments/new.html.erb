@@ -1,0 +1,10 @@
+<h2>Create Apartment</h2>
+
+<%= form_for ([@apartment]) do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+
+<% end %>

@@ -75,3 +75,15 @@ h1 {
 .subtitle {
   font-family: 'Architects Daughter', cursive;
 }
+a:link { /* Essentially means a[href], or that the link actually goes somewhere */
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:hover {
+  color: sienna;
+}
+a:active {
+  color: blue;
+}

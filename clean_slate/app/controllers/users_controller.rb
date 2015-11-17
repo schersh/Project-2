@@ -14,7 +14,10 @@ class UsersController < ApplicationController
 
   end
 
-
+  def new
+    @user = User.invite!(:email => params[:user][:email], :name => params[:user][:name])
+  end
+  
   private
   def set_post
     @user = User.find(params[:id])
