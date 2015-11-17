@@ -1,0 +1,10 @@
+<h1> Get Ready to Wipe the Slate Clean!</h1>
+
+<% if current_user %>
+
+<div class="user-action">
+  <%= link_to "View My Expenses", apartment_user_expenses_path(@apartment, current_user) %>
+  <%= link_to "Invite Roommates to Join", new_apartment_user_path (@apartment) %>
+</div>
+
+<% end %>

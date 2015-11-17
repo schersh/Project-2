@@ -1,7 +1,28 @@
+<h1><%= @apartment.name %></h1>
 
+<h2>This Month's Expenses:</h2>
 
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Amount</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<!-- def invite_user
-  @user = User.invite!(:email => params[:user][:email], :name => params[:user][:name])
-  render :json => @user
-end -->
+  <% @users.expenses.each do |expense| %>
+  <tr>
+    <td><%= expense.created_at %></td>
+    <td><%= expense.description %></td>
+    <td><%= expense.amount %></td>
+    <td><%= link_to "Edit", edit_user_expense_path(@user, expense) %></td>
+    <td><%= link_to "Remove", expense, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>Settle Up Method Here</h2>
+<h2>Clean Slate Button Here</h2>
+
+<br>

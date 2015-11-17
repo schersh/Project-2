@@ -5,12 +5,22 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:700|Architects+Daughter|Gudea' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<div class='header'>
+  <%= image_tag("couch.jpg", class: "cover") %>
+</div>
+<h1>Clean Slate</h1>
+<h2 class='subtitle'>Get even with your roommates and live happily ever after.</h2>
+<h2 class='subtitle'> An app for settling your accounts.</h2>
+<nav>
+  <p>My Apartment | My Expenses | </p>
+</nav>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
 <%= yield %>
 
 </body>

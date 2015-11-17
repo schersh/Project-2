@@ -1,0 +1,7 @@
+<h1><%= @user.name %></h1>
+
+<h2><%= '#{@apartment.name}' %></h2>
+
+<%= image_tag("cup.jpg", class: "image") %>
+
+<h2><%= link_to "My Expenses", apartment_user_expenses_path(@apartment, @user) %></h2>

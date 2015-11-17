@@ -1,0 +1,10 @@
+<%= form_for [current_user, @apartment, @expense] do |f| %>
+
+  <%= f.label :amount %>
+  <%= f.text_field :amount %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.submit %>
+<% end %>
