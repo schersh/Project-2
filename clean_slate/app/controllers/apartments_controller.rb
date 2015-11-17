@@ -17,8 +17,13 @@ class ApartmentsController < ApplicationController
   end
 
   def create
-    @apartment = Apartment.create(apartment_params.merge(user: current_user))
-    redirect_to apartments_path(@apartment, @user), notice: "#{@apartment.name} was successfully created!"
+    @apartment = current_user.apartment.new(apartment_params)
+    if @apartment.save
+      flash[:notice] = "#{@apartment.name} was successfully created!"
+      redirect_to apartments_path(current_user, @apartment).
+    else
+      render :new
+    end
   end
 
   def show
