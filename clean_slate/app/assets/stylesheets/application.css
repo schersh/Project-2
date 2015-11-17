@@ -22,7 +22,8 @@
    font-family: sans-serif;
    text-align: center;
    color: black;
-   background: rgba(206, 184, 167, 0.4)
+   background: rgba(206, 184, 167, 0.4);
+   padding-bottom: 50px;
 }
 .cover {
   max-width: 100%;
@@ -57,6 +58,8 @@ nav {
   color: #FFFFFF;
   background: #735358;
   font-size: 22px;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 h1 {
@@ -68,7 +71,10 @@ h1 {
   font-size: 44px;
   color: #735358
 }
-
+p.foot {
+  font-family: 'Gudea', sans-serif;
+  font-size: 16px;
+}
  p {
    font-family: 'Gudea', sans-serif;
  }
@@ -86,4 +92,18 @@ a:hover {
 }
 a:active {
   color: blue;
+}
+.user-action{
+  display: block;
+  font-size: 8px;
+  font-family: 'Gudea', sans-serif;
+}
+.login a{
+  background-color: #D0D0D3;
+  padding: 5px 10px 5px 10px;
+  margin-left: 5px;
+  text-decoration: none;
+}
+footer {
+  padding-top: 50px;
 }

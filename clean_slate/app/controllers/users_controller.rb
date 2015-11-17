@@ -9,15 +9,14 @@ class UsersController < ApplicationController
 
 
   def show
-    @apartment = Apartment.find(params[:apartment_id])
-    @user = User.where(apartment_id == @apartment.id)
+    @apartment = current_user.apartment 
 
   end
 
   def new
     @user = User.invite!(:email => params[:user][:email], :name => params[:user][:name])
   end
-  
+
   private
   def set_post
     @user = User.find(params[:id])

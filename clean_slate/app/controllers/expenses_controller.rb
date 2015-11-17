@@ -18,10 +18,9 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @apartment = Apartment.find(params[:apartment_id])
-    @user = User.find(params[:user_id])
-    @expense = @user.expenses.create!(expense_params.merge(user: current_user))
-    redirect_to apartment_user__expenses_path(@apartment, current_user), notice: "#{@expense.description} was successfully created!"
+      current_user.expenses.create(expense_params)
+
+      redirect_to apartment_user__expenses_path(@apartment, current_user), notice: "#{@expense.description} was successfully created!"
   end
 
 

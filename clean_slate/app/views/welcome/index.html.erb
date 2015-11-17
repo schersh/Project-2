@@ -1,14 +1,9 @@
 
 <% if current_user %>
-
-  <% if current_user.apartment %>
-    <%= link_to "View My Expenses", apartment_user_expenses_path(@apartment, current_user) %>
-  <% else %>
-    <h2><%= link_to "Create Your Apartment", new_apartment_path %></h2>
-  <% end %>
+  <h2><%= link_to "Create Your Apartment", new_apartment_path %></h2>
 
 <% else %>
 
-<%= link to "Sign in or Create an Account", new_user_session_path %>
+  <%= link to "Sign in or Create an Account", new_user_session_path %>
 
 <% end %>

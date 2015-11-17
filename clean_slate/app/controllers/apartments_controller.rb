@@ -17,17 +17,20 @@ class ApartmentsController < ApplicationController
   end
 
   def create
-    @apartment = current_user.apartment.new(apartment_params)
-    if @apartment.save
-      flash[:notice] = "#{@apartment.name} was successfully created!"
-      redirect_to apartments_path(current_user, @apartment).
-    else
-      render :new
+    @apartment = Apartment.new(apartment_params)
+    unless @apartment.save
+      redirect_to new_apartment_path
+    end
+    @apt_id = @apartment.id
+    current_user.apartment_id = @apt_id
+    if current_user.save
+      redirect_to apartment_path (@apartment)
     end
   end
 
   def show
-
+    @apartment = Apartment.find(params[:id])
+    @users = @apartment.users
   end
 
   def edit
@@ -36,12 +39,12 @@ class ApartmentsController < ApplicationController
 
   def update
     @apartment.update(apartment_params.merge(user: current_user))
-      redirect_to apartments_path(@apartment, @user)
+      redirect_to apartment_path(@apartment, @user)
   end
 
   def destroy
     @apartment.destroy
-    redirect_to apartments_path
+    redirect_to apartment_path
   end
 
   private

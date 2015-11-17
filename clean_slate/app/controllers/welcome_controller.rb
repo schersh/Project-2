@@ -4,11 +4,9 @@ class WelcomeController < ApplicationController
 
   def index
     authenticate_user!
-    if current_user
-      @apartment = current_user.apartment
-    else
-      redirect_to new_user_registration_path
-    end
+    if current_user.apartment
+      redirect_to apartment_path(current_user.apartment)
+    end 
   end
 
 end

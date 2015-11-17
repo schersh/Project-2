@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   resources :apartments do
-    resources :users do
-      resources :expenses
-    end
+    resources :users
   end
+
+  resources :expenses
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

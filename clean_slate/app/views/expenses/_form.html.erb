@@ -1,4 +1,4 @@
-<%= form_for [current_user, @apartment, @expense] do |f| %>
+<%= form_for [current_user, @expense] do |f| %>
 
   <%= f.label :amount %>
   <%= f.text_field :amount %>
@@ -7,4 +7,5 @@
   <%= f.text_field :description %>
 
   <%= f.submit %>
+
 <% end %>

@@ -1,8 +1,6 @@
 <h1><%= @user.name %></h1>
 
-<h2><%= '#{@apartment.name}' %></h2>
-<!-- add link to apartment show page -->
+<h2><%= link_to '#{@apartment.name}', apartment_path(current_user.apartment) %></h2>
+<h2><%= link_to "My Expenses", apartment_user_expenses_path(@apartment, @user) %></h2>
 
 <%= image_tag("cup.jpg", class: "image") %>
-
-<h2><%= link_to "My Expenses", apartment_user_expenses_path(@apartment, @user) %></h2>
