@@ -31,7 +31,7 @@ class ApartmentsController < ApplicationController
   def show
     @apartment = Apartment.find(params[:id])
     @roommates = @apartment.users
-    @user = current_user
+    user = current_user
     @expenses = current_user.expenses
   end
 

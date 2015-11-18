@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   root to: 'welcome#index'
 
-  resources :apartments do
-    resources :users
-  end
-
+  resources :apartments
+  resources :users
   resources :expenses
 
   # The priority is based upon order of creation: first created -> highest priority.

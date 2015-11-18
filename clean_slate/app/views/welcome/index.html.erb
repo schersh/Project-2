@@ -1,5 +1,7 @@
+<% if current_user.temp_id %>
+  <h2><%= link_to "Confirm Profile Information", users_path(current_user) %></h2>
 
-<% if current_user %>
+<% elsif current_user %>
   <h2><%= link_to "Create Your Apartment", new_apartment_path %></h2>
 
 <% else %>

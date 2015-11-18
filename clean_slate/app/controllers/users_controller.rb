@@ -5,22 +5,39 @@ class UsersController < ApplicationController
 
   def index
     @expenses = current_user.expenses
-  end
-
-
-  def show
     @apartment = current_user.apartment
-    @user = current_user.name
   end
 
   def new
-    @user = User.invite!(:email => params[:user][:email], :name => params[:user][:name])
+    @user = User.new
   end
+
+  def create
+    @user = User.find_by params[:email]
+    @user.temp_id = current_user.apartment_id
+    if @user.save
+      redirect_to apartment_path(current_user.apartment), notice: "You have successfully invited this roommate. Your roommate must log-in to accept or decline your invitation."
+    end
+  end
+
+  def show
+    @apartment = current_user.apartment
+    @user = current_user.first_name
+  end
+
+  def update
+    @apartment = current_user.apartment
+    if current_user.apartment_id
+      redirect_to apartment_path(@apartment)
+    end
+  end
+
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :encrypted_password)
+    params.require(:user).permit(:first_name, :last_name, :email, :encrypted_password, :temp_id)
   end
+
   def set_post
     @user = User.find(params[:id])
   end

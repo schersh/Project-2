@@ -16,13 +16,13 @@ class ExpensesController < ApplicationController
   end
 
   def new
-      @user = current_user
+      @roommate = current_user.first_name
       @expense = Expense.new
   end
 
   def create
       current_user.expenses.create(expense_params)
-      redirect_to expenses_path(current_user), notice: "#{@expense.description} was successfully created!"
+      redirect_to apartment_path(current_user), notice: "This expense was successfully created!"
   end
 
   def edit
@@ -35,18 +35,17 @@ class ExpensesController < ApplicationController
     if @expense.update(expense_params)
       flash[:notice] = "You have successfully update this expense"
     end
-    render :index
+    redirect_to apartment_path(current_user)
   end
 
   def destroy
-    @apartment = Apartment.find(params[:apartment_id])
     @expense.destroy
-    redirect_to expenses_path(current_user)
+    redirect_to apartment_path(current_user)
   end
 
   private
   def expense_params
-    params.require(:expense).permit(:created_at, :amount, :description)
+    params.require(:expense).permit(:created_at, :amount, :description, :user_first_name)
   end
 
   def set_post

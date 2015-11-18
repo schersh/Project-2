@@ -18,7 +18,7 @@
   <div class="user-info login">
     <p>Welcome to Clean Slate:
      <% if current_user %>
-       You are logged in as <%= current_user.email %>
+       You are logged in as <%= current_user.first_name %>
     </p>
        <%= link_to 'Signout', destroy_user_session_path, :method => :delete %>
      <% else %>

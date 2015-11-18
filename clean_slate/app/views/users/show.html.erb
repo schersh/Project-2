@@ -1,6 +1,9 @@
-<h1><%= @user.name %></h1>
+<h1><%= "#{@user}" %></h1>
 
-<h2><%= link_to '#{@apartment.name}', apartment_path(current_user.apartment) %></h2>
-<h2><%= link_to "My Expenses", apartment_user_expenses_path(@apartment, @user) %></h2>
+<h2 class="subtitle"><%= @apartment.name %> has invited you to join their account on Clean Slate.</h2>
+<h2 class="subtitle">Would you like to join?</h2>
 
-<%= image_tag("cup.jpg", class: "image") %>
+
+<button><%= button_to "Accept Invitation", apartment_path(@apartment), method: :patch %></button>
+
+<button><%= button_to "Decline Invitation", new_apartment_path, method: :path %></button>
