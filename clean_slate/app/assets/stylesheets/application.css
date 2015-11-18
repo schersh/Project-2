@@ -49,7 +49,7 @@
 .image {
   align-self: center;
   padding: 1px;
-  margin: 10px auto;
+  margin: 15px auto;
   width: 600px;
   border: 3px solid #7A7A7A;
 }
@@ -120,5 +120,5 @@ th {
 button {
   font-family: 'Architects Daughter', cursive;
   font-size: 18px;
-  padding: 7px; 
+  padding: 7px;
 }

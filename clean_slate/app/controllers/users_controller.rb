@@ -13,25 +13,40 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_by params[:email]
-    @user.temp_id = current_user.apartment_id
-    if @user.save
-      redirect_to apartment_path(current_user.apartment), notice: "You have successfully invited this roommate. Your roommate must log-in to accept or decline your invitation."
-    end
+
   end
 
   def show
-    @apartment = current_user.apartment
+    temp_id = current_user.temp_id
+    apartment = Apartment.where(params[:id] == temp_id)
+    @apartment = apartment.name
     @user = current_user.first_name
   end
 
   def update
-    @apartment = current_user.apartment
+    @apartment = current_user.apartment.name
     if current_user.apartment_id
       redirect_to apartment_path(@apartment)
     end
   end
 
+  def invite_roommate
+    user = User.find_by(email: params[:email])
+    user.temp_id = current_user.apartment_id
+    user.save
+    redirect_to apartment_path(current_user.apartment), notice: "You have successfully invited this roommate. Your roommate must log-in to accept or decline your invitation."
+  end
+
+  def accept_invite
+    current_user.apartment_id = current_user.temp_id
+    current_user.temp_id = nil
+    current_user.save
+    redirect_to apartment_path(current_user.apartment), notice: "You have successfully joined as a roommated!"
+  end
+
+  def decline_invite
+    redirect_to new_apartment_path
+  end
 
   private
   def user_params

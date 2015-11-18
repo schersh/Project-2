@@ -1,14 +1,5 @@
-<%= form_for [@user] do |f| %>
-
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-
-  <%= f.submit %>
-
-<% end %>
+<form action="/invite_roommate" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type= "text" name= "email" >
+  <input type= "submit">
+</form>

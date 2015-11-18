@@ -36,12 +36,17 @@ class ApartmentsController < ApplicationController
   end
 
   def edit
-
+    @apartment = Apartment.find(params[:id])
+    @roommates = @apartment.users
   end
 
   def update
+    @user = current_user
     @apartment.update(apartment_params.merge(user: current_user))
-      redirect_to apartment_path(@apartment, @user)
+    if @apartment.update(apartment_params)
+      flash[:notice] = "You have successfully update this apartment."
+    end
+    redirect_to apartment_path(current_user)
   end
 
   def destroy
