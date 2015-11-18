@@ -5,6 +5,7 @@
     <th>Date</th>
     <th>Description</th>
     <th>Amount</th>
+    <th>Roommate</th>
     <th></th>
     <th></th>
   </tr>
@@ -14,6 +15,7 @@
     <td><%= expense.created_at %></td>
     <td><%= expense.description %></td>
     <td><%= expense.amount %></td>
+    <td><%= expense.user.name %></td>
     <td><%= link_to "Edit", edit_user_expense_path(@user, expense) %></td>
     <td><%= link_to "Remove", expense, method: :delete, data: { confirm: "Are you sure?" } %></td>
   </tr>
@@ -22,4 +24,4 @@
 
 <br>
 
-<%= link_to "New expense (+)", new_apartment_user_expense(@apartment, @user) %>
+<%= link_to "New expense (+)", new_expense_path(current_user) %>

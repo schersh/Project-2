@@ -1,25 +1,25 @@
 <h1><%= @apartment.name %></h1>
 
 <h2 class='subtitle'>Roommates:</h2>
-  <% @users.each do |user| %>
-  <p><%= user.name %></p>
+  <% @roommates.each do |roommate| %>
+  <p><%= roommate.name %></p>
   <% end %>
 <button><%= link_to "Invite Roommates", new_user_invitation_path %></button>
 
-
-
-<table class="table">
-  <p>This Month's Expenses:</p>
-  <tr>
-    <th>Date</th>
-    <th>Description</th>
-    <th>Amount</th>
-    <th></th>
-    <th></th>
-  </tr>
-</table>
-
 <button>Settle Up Method Here</button>
 <button>Clean Slate Button Here</button>
+
+<div class="expenses">
+  <p>This Month's Expenses:</p>
+  <%= link_to "New expense (+)", new_expense_path(current_user) %>
+
+  <% @roommates.each do |roommate| %>
+    <%= render partial: "expenses/table", locals: { table: @expenses }%>
+  <% end %>
+
+  <br>
+</div>
+
+
 
 <br>

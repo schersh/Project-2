@@ -4,6 +4,7 @@ class ExpensesController < ApplicationController
 
   def index
     authenticate_user!
+    @user = current_user
     if current_user
       @expenses = current_user.expenses
     else
@@ -11,25 +12,25 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def new
-      @user = User.find(params[:user_id])
-      @apartment = Apartment.find(params[:apartment_id])
-      @expense = expense.new
+      @user = current_user
+      @expense = Expense.new
   end
 
   def create
       current_user.expenses.create(expense_params)
-
-      redirect_to apartment_user__expenses_path(@apartment, current_user), notice: "#{@expense.description} was successfully created!"
+      redirect_to expenses_path(current_user), notice: "#{@expense.description} was successfully created!"
   end
 
-
   def edit
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def update
-    @user = User.find(params[:user_id])
+    @user = current_user
     @expense.update(expense_params.merge(user: current_user))
     if @expense.update(expense_params)
       flash[:notice] = "You have successfully update this expense"
@@ -40,7 +41,7 @@ class ExpensesController < ApplicationController
   def destroy
     @apartment = Apartment.find(params[:apartment_id])
     @expense.destroy
-    redirect_to apartment_user_expenses_path(@apartment, current_user)
+    redirect_to expenses_path(current_user)
   end
 
   private

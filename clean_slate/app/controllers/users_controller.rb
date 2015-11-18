@@ -9,8 +9,8 @@ class UsersController < ApplicationController
 
 
   def show
-    @apartment = current_user.apartment 
-
+    @apartment = current_user.apartment
+    @user = current_user.name
   end
 
   def new
@@ -18,6 +18,9 @@ class UsersController < ApplicationController
   end
 
   private
+  def user_params
+    params.require(:user).permit(:name, :email, :encrypted_password)
+  end
   def set_post
     @user = User.find(params[:id])
   end
