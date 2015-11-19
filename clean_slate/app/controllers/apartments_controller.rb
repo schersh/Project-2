@@ -33,6 +33,8 @@ class ApartmentsController < ApplicationController
     @roommates = @apartment.users
     user = current_user
     @expenses = current_user.expenses
+    @roommate_sums = roommate_sums
+    @grand_total = get_total
   end
 
   def edit
@@ -42,16 +44,35 @@ class ApartmentsController < ApplicationController
 
   def update
     @user = current_user
-    @apartment.update(apartment_params.merge(user: current_user))
+    @apartment.update(apartment_params)
     if @apartment.update(apartment_params)
       flash[:notice] = "You have successfully update this apartment."
     end
-    redirect_to apartment_path(current_user)
+    redirect_to apartment_path(@apartment)
   end
 
   def destroy
     @apartment.destroy
     redirect_to apartment_path
+  end
+
+  def get_total
+    @apartment.expenses
+      .map {|expense| expense.amount}
+      .reduce(:+)
+  end
+
+  def roommate_sums
+    users = @apartment.users
+    apartment_total = get_total
+    apartment_average = apartment_total / users.length
+    roommate_sums = []
+    users.each do |user|
+      total = user.expenses.map {|expense| expense.amount}.reduce(:+)
+      balance = apartment_average - total
+      roommate_sums << {:total => total, :balance => balance, :user => user}
+    end
+    return roommate_sums
   end
 
   private

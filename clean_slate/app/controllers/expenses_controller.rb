@@ -21,8 +21,9 @@ class ExpensesController < ApplicationController
   end
 
   def create
+      @apartment = current_user.apartment
       current_user.expenses.create(expense_params)
-      redirect_to apartment_path(current_user), notice: "This expense was successfully created!"
+      redirect_to apartment_path(@apartment), notice: "This expense was successfully created!"
   end
 
   def edit
@@ -30,17 +31,19 @@ class ExpensesController < ApplicationController
   end
 
   def update
+    @apartment = current_user.apartment
     @user = current_user
     @expense.update(expense_params.merge(user: current_user))
     if @expense.update(expense_params)
       flash[:notice] = "You have successfully update this expense"
     end
-    redirect_to apartment_path(current_user)
+    redirect_to apartment_path(@apartment)
   end
 
   def destroy
+    @apartment = current_user.apartment
     @expense.destroy
-    redirect_to apartment_path(current_user)
+    redirect_to apartment_path(@apartment)
   end
 
   private

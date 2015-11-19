@@ -15,13 +15,56 @@
 
 <div id="table">
   <% @roommates.each do |roommate| %>
-    <%= render partial: "expenses/table", locals: { table: @expenses }%>
+    <table class="center">
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Roommate</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% roommate.expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.created_at %></td>
+        <td><%= expense.description %></td>
+        <td><%= expense.amount %></td>
+        <td><%= expense.user.first_name %></td>
+        <td><%= link_to "Edit", edit_expense_path(expense) %></td>
+        <td><%= link_to "Remove", expense, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </table>
+  <br>
   <% end %>
 </div>
   <br>
 </div>
 
-<button>Settle Up Method Here</button>
+<h2 class='subtitle'>Settle Up:</h2>
+<table class="center">
+  <tr>
+    <th>Roommate</th>
+    <th>Total Spent</th>
+    <th>Balance</th>
+  </tr>
+
+  <% @roommate_sums.each do |sum| %>
+
+  <tr>
+    <td><%= sum[:user].first_name %></td>
+    <td><%= sum[:total] %></td>
+    <td><%= sum[:balance] %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td>Total Spent:</td>
+    <td><%= @grand_total %></td>
+    <td>0</td>
+  </tr>
+</table>
+
 <button>Clean Slate Button Here</button>
 
 <div class ="center">
